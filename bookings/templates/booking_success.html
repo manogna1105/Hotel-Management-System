@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LunoStay Hotel</title>
+  <link rel="stylesheet" href="{% static 'css/booking_success.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="{% static 'js/booking_success.js' %}" defer></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb-gqgft14722727@business.example.com&currency=INR"></script>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <div class="logo"><i class="fas fa-hotel"></i> Luno<span style="color:#1e90ff">Stay</span></div>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'rooms' %}">Rooms</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="{% url 'login_view' %}" class="login-btn"><i class="fas fa-user"></i> Login</a>
+
+    </div>
+  </header>
+
+  <div class="success-wrapper">
+    <div class="success-container">
+      <h2>Booking Confirmed!</h2>
+      <center><p>Thank you <strong>{{ booking_info.user.first_name }}</strong> for choosing LunoStay.</p></center>
+  
+      <div class="booking-details">
+      <h3>Booking Details</h3>
+      <p><strong>Check-in:</strong> {{ booking_info.check_in }}</p>
+      <p><strong>Check-out:</strong> {{ booking_info.check_out }}</p>
+      <p><strong>Email:</strong> {{ booking_info.email }}</p>
+      <p><strong>Phone:</strong> {{ booking_info.phone }}</p>
+      <p><strong>Address:</strong> {{ booking_info.address }}</p>
+      <p><strong>Total Cost:</strong> ₹{{ booking_info.total_cost }}</p>
+  
+      <h3>Rooms Booked</h3>
+      <ul>
+        {% for booked in booking_info.booked_rooms.all %}
+          <li>{{ booked.room.name }} — Quantity: {{ booked.quantity }}</li>
+        {% empty %}
+          <li>No rooms selected.</li>
+        {% endfor %}
+      </ul>
+    
+      <h3>Selected Services</h3>
+      <ul>
+        {% for service in services %}
+          <li>{{ service.name }}</li>
+        {% empty %}
+          <li>No services selected.</li>
+        {% endfor %}
+      </ul>
+    
+      <h3>Selected Packages</h3>
+      <ul>
+        {% for package in packages %}
+          <li>{{ package.name }}</li>
+        {% empty %}
+          <li>No packages selected.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  
+      <a href="{% url 'home' %}" class="btn-home">Back to Home</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>LuxStay Hotel</h3>
+        <p>Experience luxury accommodation with world-class service and amenities.</p>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'rooms' %}">Rooms & Suites</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Cityville, Country</p>
+        <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+        <p><i class="fas fa-envelope"></i> info@luxstayhotel.com</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>We Accept</h4>
+        <div class="payment-icons">
+          <img src="{% static 'images/visa.png' %}" alt="Visa">
+          <img src="{% static 'images/Mastercard.png' %}" alt="MasterCard">
+          <img src="{% static 'images/Amex.png' %}" alt="Amex">
+          <img src="{% static 'images/discover.png' %}" alt="Discover">
+          <img src="{% static 'images/paypal.png' %}" alt="PayPal">
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p class="copyright">© 2025 LuxStay Hotel. All rights reserved.</p>
+  </footer>
+</body>
+</html>

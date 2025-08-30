@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LunoStay Hotel</title>
+  <link rel="stylesheet" href="{% static 'css/guest_dashboard.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <div class="logo"><i class="fas fa-hotel"></i> Luno<span style="color:#1e90ff">Stay</span></div>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'rooms' %}">Rooms</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </nav>
+      <form action="{% url 'logout_view' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </form>
+    </div>
+  </header>
+
+  {% if latest_booking %}
+  <div class="dashboard-wrapper">
+    <div class="dashboard-card">
+      {% if latest_booking %}
+        <h2 class="dashboard-title">Welcome, {{ user.first_name|default:user.username }}!</h2>
+        <p class="sub-text">Here is your latest booking and profile information.</p>
+  
+        <!-- User Info -->
+        <div class="dashboard-section">
+          <h3>User Information</h3>
+          <div class="info-box">
+            <p><strong>Name:</strong> {{ user.first_name|default:user.username }} {{ latest_booking.last_name }}</p>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ latest_booking.email }}</p>
+            <p><strong>Phone:</strong> {{ latest_booking.phone }}</p>
+            <p><strong>Address:</strong> {{ latest_booking.address }}</p>
+          </div>
+        </div>
+  
+        <!-- Booking Info -->
+        <div class="dashboard-section">
+          <h3>Latest Booking Details</h3>
+          <div class="info-box">
+            <p><strong>Check-in:</strong> {{ latest_booking.check_in|date:"F d, Y" }}</p>
+            <p><strong>Check-out:</strong> {{ latest_booking.check_out|date:"F d, Y" }}</p>
+            <p><strong>Total Cost:</strong> ₹{{ latest_booking.total_cost }}</p>
+          </div>
+  
+          <h4>Rooms Booked</h4>
+          <div class="info-box">
+            <ul>
+              {% for booked in latest_booking.booked_rooms.all %}
+                <li>{{ booked.room.name }} — Quantity: {{ booked.quantity }}</li>
+              {% empty %}
+                <li>No rooms selected.</li>
+              {% endfor %}
+            </ul>
+          </div>
+
+        </div>
+      {% else %}
+        <p style="text-align:center; font-weight:500;">You haven’t made any bookings yet.</p>
+      {% endif %}
+  
+      <div class="dashboard-buttons">
+        <a href="{% url 'booking' %}" class="btn-home">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  {% else %}
+    <p style="text-align:center; font-weight:500; margin-top:40px;">You haven’t made any bookings yet.</p>
+    <div class="book-now-wrapper">
+      <a href="{% url 'booking' %}" class="btn-home">Book Now</a>
+    </div>
+  {% endif %}
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>LunoStay Hotel</h3>
+        <p>Experience luxury accommodation with world-class service and amenities.</p>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
+  
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'rooms' %}">Rooms & Suites</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Cityville, Country</p>
+        <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+        <p><i class="fas fa-envelope"></i> info@luxstayhotel.com</p>
+      </div>
+  
+      <div class="footer-section">
+        <h4>We Accept</h4>
+        <div class="payment-icons">
+          <img src="{% static 'images/visa.png' %}" alt="Visa">
+          <img src="{% static 'images/Mastercard.png' %}" alt="MasterCard">
+          <img src="{% static 'images/Amex.png' %}" alt="Amex">
+          <img src="{% static 'images/discover.png' %}" alt="Discover">
+          <img src="{% static 'images/paypal.png' %}" alt="PayPal">
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p class="copyright">© 2025 LunoStay Hotel. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

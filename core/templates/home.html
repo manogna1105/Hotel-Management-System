@@ -1,0 +1,316 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LunoStay Hotel</title>
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="{% static 'js/home.js' %}" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-container">
+      <div class="logo"><i class="fas fa-hotel"></i> Luno<span style="color:#1e90ff">Stay</span></div>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'rooms' %}">Rooms</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="{% url 'login_view' %}" class="login-btn"><i class="fas fa-user"></i> Login</a>
+    </div>
+  </header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container hero-text-container">
+    <div class="hero-content">
+      <h1>Spend Quality Holidays<br>With Us</h1>
+      <p>Discover the perfect blend of comfort, elegance, and impeccable service at LuxStay Hotel.</p>
+      <a href="{% url 'login_view' %}?next=/guest/" class="btn">Book Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- Search Section -->
+<section class="search-section" id="search">
+  <div class="container">
+    <div class="search-card">
+      <h3>Find Your Perfect Room</h3>
+      <form method="GET" action="{% url 'rooms' %}">
+        <div class="form-group">
+          <label for="checkin">Check In</label>
+          <input type="date" id="checkin" name="checkin"/>
+        </div>
+        <div class="form-group">
+          <label for="checkout">Check Out</label>
+          <input type="date" id="checkout" name="checkout"/>
+        </div>
+        <div class="form-group">
+          <label for="guests">Guests</label>
+          <select id="guests" name="guests">
+            <option>2 Guest</option>
+            <option>3 Guests</option>
+            <option>4 Guests</option>
+            <option>6 Guests</option>
+            <option>Family</option>
+          </select>
+        </div>
+        <div class="form-group full-width">
+          <button type="submit"><i class="fa fa-search"></i> Search Rooms</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+  <section class="featured-wrapper">
+    <div class="featured-bg">
+      <div class="container">
+        <section class="featured-rooms">
+          <h2>Featured Rooms</h2>
+          <p>Experience the best accommodations we have to offer</p>
+          <div class="rooms-grid">
+            <div class="room-card">
+              <div class="image-container">
+                <img src="{% static 'images/Deluxe_room.jpg' %}" alt="Deluxe Room">
+                <span class="price-badge">$198/night</span>
+              </div>
+              <h4>Deluxe Room</h4>
+              <div class="rating">⭐⭐⭐⭐⭐ <span>5.0 (48 reviews)</span></div>
+              <div class="room-details">
+                <span>👤 2 Guests</span>
+                <span>🛏️ Queen Bed</span>
+                <span>📶 Free WiFi</span>
+              </div>
+              <p>Luxurious room with panoramic city views, premium amenities, and executive lounge access.</p>
+              <a href="{% url 'room_detail' 1 %}">
+                <button class="view-btn">View Details</button>
+              </a>
+            </div>
+
+            <div class="room-card">
+              <div class="image-container">
+              <img src="{% static 'images/Premium_suite.jpg' %}" alt="Premium Suite">
+              <span class="price-badge">$299/night</span>
+              </div>
+              <h4>Premium Suite</h4>
+              <div class="rating">⭐⭐⭐⭐⭐ <span>4.8 (36 reviews)</span></div>
+              <div class="room-details">
+                <span>👤 4 Guests</span>
+                <span>🛏️ 2 King Bed</span>
+                <span>♨️ Jacuzzi</span>
+              </div>
+              <p>Spacious suite with king-size bed, elegant furnishings, and private balcony.</p>
+              <a href="{% url 'room_detail' 3 %}">
+                <button class="view-btn">View Details</button>
+              </a>
+            </div>
+            <div class="room-card">
+              <div class="image-container">
+              <img src="{% static 'images/Executive_room.jpg' %}" alt="Executive Room">
+              <span class="price-badge">$249/night</span>
+            </div>
+              <h4>Executive Room</h4>
+              <div class="rating">⭐⭐⭐⭐⭐ <span>4.9 (42 reviews)</span></div>
+              <div class="room-details">
+                <span>👤 2 Guests</span>
+                <span>🛏️ Queen Bed</span>
+                <span>🛎️ Room Service</span>
+              </div>
+              <p>Modern room with workspace, high-speed internet, and access to lounge.</p>
+              <a href="{% url 'room_detail' 2 %}">
+                <button class="view-btn">View Details</button>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div style="display: flex; justify-content: center; margin-top: 2rem;">
+        <a href="{% url 'rooms' %}" class="view-rms">View All Rooms</a>
+      </div>
+    </div>
+  </section> 
+
+  <section class="features-wrapper">
+  <div class="container">
+    
+    <!-- Our Services Section -->
+    <div class="services-section">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">Experience the exceptional amenities and services we offer</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon-circle"><i class="fas fa-utensils"></i></div>
+          <h3>Gourmet Dining</h3>
+          <p>Experience culinary excellence with our award-winning chefs and restaurants.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon-circle"><i class="fas fa-spa"></i></div>
+          <h3>Spa & Wellness</h3>
+          <p>Rejuvenate your body and mind with our premium spa treatments and facilities.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon-circle"><i class="fas fa-swimmer"></i></div>
+          <h3>Pool & Fitness</h3>
+          <p>Stay active with our state-of-the-art fitness center and luxury swimming pools.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon-circle"><i class="fas fa-concierge-bell"></i></div>
+          <h3>Concierge</h3>
+          <p>Our dedicated concierge team is available 24/7 to assist with all your needs.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Features -->
+    <div class="additional-features">
+      <h3 class="section-subtitle">Why Choose LuxStay?</h3>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4>Flexible Booking</h4>
+          <p>Modify or cancel bookings easily with our guest-first policies.</p>
+        </div>
+        <div class="feature-card">
+          <h4>High-Speed WiFi</h4>
+          <p>Stay connected throughout the hotel with blazing fast internet.</p>
+        </div>
+        <div class="feature-card">
+          <h4>Airport Transfers</h4>
+          <p>Enjoy stress-free arrival with complimentary airport pickups and drop-offs.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="testimonials-wrapper">
+  <div class="container">
+    <h2 class="section-title">Guest Testimonials</h2>
+    <p class="section-subtitle">What our guests say about their stay with us</p>
+
+    <div class="testimonials-grid">
+      
+      <!-- Testimonial 1 -->
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">
+          "Absolutely incredible experience! The staff went above and beyond to make our stay memorable.
+          The rooms are immaculate and the amenities are top-notch."
+        </p>
+        <div class="testimonial-user">
+          <div class="avatar">JD</div>
+          <div>
+            <strong>John Doe</strong><br />
+            <span>Business Traveler</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">
+          "We celebrated our anniversary here and it was perfect. The romantic dinner arrangement, the room
+          decoration, and the special treats made it unforgettable."
+        </p>
+        <div class="testimonial-user">
+          <div class="avatar">JS</div>
+          <div>
+            <strong>Jane Smith</strong><br />
+            <span>Couple Retreat</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="testimonial-card">
+        <div class="stars">★★★★☆</div>
+        <p class="testimonial-text">
+          "Our family vacation was a delight thanks to the attentive staff and kid-friendly amenities.
+          The pool area was a hit with our children and the room was spacious and comfortable."
+        </p>
+        <div class="testimonial-user">
+          <div class="avatar">RJ</div>
+          <div>
+            <strong>Robert Johnson</strong><br />
+            <span>Family Vacation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter-wrapper">
+  <div class="container">
+    <h2 class="newsletter-title">Subscribe to Our Newsletter</h2>
+    <p class="newsletter-subtitle">
+      Stay updated with our latest offers, promotions, and travel tips. Subscribe to our newsletter for exclusive deals.
+    </p>
+    
+    <form class="newsletter-form" action="#" method="post">
+      <input type="email" placeholder="Your email address" required />
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>LunoStay Hotel</h3>
+      <p>Experience luxury accommodation with world-class service and amenities.</p>
+      <div class="social-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin-in"></i>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'rooms' %}">Rooms & Suites</a></li>
+        <li><a href="{% url 'services' %}">Services</a></li>
+        <li><a href="{% url 'about' %}">About Us</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Contact Us</h4>
+      <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Cityville, Country</p>
+      <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+      <p><i class="fas fa-envelope"></i> info@lunostayhotel.com</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>We Accept</h4>
+      <div class="payment-icons">
+        <img src="{% static 'images/visa.png' %}" alt="Visa">
+        <img src="{% static 'images/Mastercard.png' %}" alt="MasterCard">
+        <img src="{% static 'images/Amex.png' %}" alt="Amex">
+        <img src="{% static 'images/discover.png' %}" alt="Discover">
+        <img src="{% static 'images/paypal.png' %}" alt="PayPal">
+      </div>
+    </div>
+  </div>
+  <hr>
+  <p class="copyright">© 2025 LunoStay Hotel. All rights reserved.</p>
+</footer>
+</body>
+</html>

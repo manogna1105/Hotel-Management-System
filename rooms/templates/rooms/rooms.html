@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LunoStay | Rooms</title>
+  <link rel="stylesheet" href="{% static 'css/rooms.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="{% static 'js/rooms.js' %}" defer></script>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="container nav-container">
+    <div class="logo"><i class="fas fa-hotel"></i> Luno<span style="color:#1e90ff">Stay</span></div>
+    <nav>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'rooms' %}">Rooms</a></li>
+        <li><a href="{% url 'services' %}">Services</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="{% url 'login_view' %}" class="login-btn"><i class="fas fa-user"></i> Login</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero-content">
+    <h1>Our Rooms & Suites</h1>
+    <p>Discover our wide range of luxurious accommodations designed for your comfort and relaxation.</p>
+    <div class="breadcrumb">
+      <a href="{% url 'home' %}">Home</a> / <span>Rooms</span>
+    </div>
+  </div>
+</section>
+
+<!-- Search Section -->
+<section class="search-section">
+  <div class="container">
+    <div class="search-card">
+      <h3>Find Your Perfect Room</h3>
+      <form method="GET" action="{% url 'rooms' %}">
+        <div class="form-group">
+          <label for="checkin">Check In</label>
+          <input type="date" id="checkin" name="checkin"/>
+        </div>
+        <div class="form-group">
+          <label for="checkout">Check Out</label>
+          <input type="date" id="checkout" name="checkout"/>
+        </div>
+        <div class="form-group">
+          <label for="guests">Guests</label>
+          <select id="guests" name="guests">
+            <option value="2">2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+            <option value="6">6 Guests</option>
+            <option value="10">Family</option>
+          </select>
+        </div>
+        <div class="form-group full-width">
+          <button type="submit"><i class="fa fa-search"></i> Search Rooms</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Room List & Filters -->
+<section class="room-listing">
+  <div class="container listing-container">
+
+    <!-- Sidebar Filters -->
+    <aside class="filters">
+      <h3>Filter Rooms</h3>
+      <form id="filterForm">
+        <div class="filter-group">
+          <label>Price Range</label>
+          <div class="price-labels">
+            <span>&#8377; 1000</span>
+            <span>&#8377; 5000</span>
+          </div>
+          <input type="range" id="maxPrice" name="maxPrice" min="1000" max="5000" value="5000" />
+          <p class="price-display">Up to <span id="priceValue">5000</span></p>
+        </div>
+
+        <div class="filter-group">
+          <label>Room Type</label>
+          <label><input type="checkbox" name="room_type" value="Deluxe Room"> Deluxe Room</label>
+          <label><input type="checkbox" name="room_type" value="Executive Room"> Executive Room</label>
+          <label><input type="checkbox" name="room_type" value="Premium Suite"> Premium Suite</label>
+          <label><input type="checkbox" name="room_type" value="Family Suite"> Family Suite</label>
+          <label><input type="checkbox" name="room_type" value="Penthouse Suite"> Penthouse Suite</label>
+        </div>
+
+        <div class="filter-group">
+          <label>Amenities</label>
+          <label><input type="checkbox" name="amenities" value="wifi"> Free WiFi</label>
+          <label><input type="checkbox" name="amenities" value="breakfast"> Breakfast Included</label>
+          <label><input type="checkbox" name="amenities" value="jacuzzi"> Jacuzzi</label>
+          <label><input type="checkbox" name="amenities" value="balcony"> Private Balcony</label>
+          <label><input type="checkbox" name="amenities" value="minibar"> Mini Bar</label>
+          <label><input type="checkbox" name="amenities" value="tv"> TV</label>
+        </div>
+
+        <button type="submit" class="filter-btn"><i class="fa fa-filter"></i> Apply Filters</button>
+      </form>
+    </aside>
+
+    <!-- Room Cards -->
+    <div class="room-grid">
+      {% for room in rooms %}
+      <div class="room-card"
+           data-type="{% if 'Deluxe' in room.name %}deluxe room{% elif 'Executive' in room.name %}executive room{% elif 'Premium' in room.name %}premium suite{% elif 'Family' in room.name %}family suite{% elif 'Penthouse' in room.name %}penthouse suite{% else %}unknown{% endif %}"
+           data-price="{{ room.price }}"
+           data-guests="{{ room.guest_capacity }}"
+           data-amenities="{% if room.wifi %}wifi,{% endif %}{% if room.breakfast %}breakfast,{% endif %}{% if room.jacuzzi %}jacuzzi,{% endif %}{% if room.balcony %}balcony,{% endif %}{% if room.minibar %}minibar,{% endif %}{% if room.tv %}tv,{% endif %}">
+    
+           <img src="{% static 'images/'|add:room.name|add:'.jpg' %}" alt="{{ room.name }}">
+        <div class="room-info">
+          <h4>{{ room.name }}</h4>
+          <p class="price">&#8377; {{ room.price }} / night</p>
+          <span>👤 {{ room.guest_capacity }} Guests</span>
+          <span>🛏️ {{ room.bed_count }} Beds</span>
+          <span> • {{ room.size }} m²</span>
+          <p>{{ room.description }}</p>
+    
+          <a href="{% url 'room_detail' room.id %}">
+            <button class="view-btn">View Details</button>
+          </a>
+    
+          {% if room.availability.available_rooms > 0 %}
+          {% if user.is_authenticated %}
+          <a href="{% url 'booking' %}?room_ids={{ room.id }}:1&total_price={{ room.price }}">
+            <button class="book-btn">Book Now</button>
+          </a>
+        {% else %}
+          <a href="{% url 'login_view' %}?next={% url 'booking' %}?room_ids={{ room.id }}:1&total_price={{ room.price }}">
+            <button class="book-btn">Book Now</button>
+          </a>
+        {% endif %}
+        
+          {% else %}
+            <button class="book-btn" disabled>Fully Booked</button>
+          {% endif %}
+    
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h3>LunoStay Hotel</h3>
+      <p>Experience luxury accommodation with world-class service and amenities.</p>
+      <div class="social-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin-in"></i>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'rooms' %}">Rooms & Suites</a></li>
+        <li><a href="{% url 'services' %}">Services</a></li>
+        <li><a href="{% url 'about' %}">About Us</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Contact Us</h4>
+      <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Cityville</p>
+      <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+      <p><i class="fas fa-envelope"></i> info@lunostayhotel.com</p>
+    </div>
+    <div class="footer-section">
+      <h4>We Accept</h4>
+      <div class="payment-icons">
+        <img src="{% static 'images/visa.png' %}" alt="Visa">
+        <img src="{% static 'images/Mastercard.png' %}" alt="MasterCard">
+        <img src="{% static 'images/Amex.png' %}" alt="Amex">
+        <img src="{% static 'images/discover.png' %}" alt="Discover">
+        <img src="{% static 'images/paypal.png' %}" alt="PayPal">
+      </div>
+    </div>
+  </div>
+  <hr>
+  <p class="copyright">© 2025 LunoStay Hotel. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+  }
+  
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 2rem;
+  }
+  
+  /* Navbar */
+  header {
+    background: white;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  
+  .logo {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  
+  .nav-container nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.75rem;
+  }
+  
+  .nav-container a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .nav-container nav ul li a,
+  .login-btn {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+
+
+  .success-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 50px 15px;
+    background: #f5faff;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .success-container {
+    background: #fff;
+    max-width: 850px;
+    width: 100%;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .success-container h2 {
+    text-align: center;
+    color: #1e90ff;
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+
+  .success-container p {
+    font-size: 16px;
+    color: #333;
+    margin: 4px 0;
+  }
+
+  .booking-details {
+    margin-top: 20px;
+    border-top: 2px solid #e2e8f0;
+    padding-top: 20px;
+  }
+
+  .booking-details h3 {
+    font-size: 22px;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+  }
+
+  .booking-details ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .booking-details ul li {
+    background: #f0f8ff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-size: 15px;
+    color: #444;
+  }
+
+  .booking-details p strong {
+    width: 150px;
+    display: inline-block;
+    color: #222;
+  }
+
+  .btn-home {
+    display: inline-block;
+    text-align: center;
+    margin-top: 30px;
+    background-color: #1e90ff;
+    color: #fff;
+    padding: 12px 26px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+
+  .btn-home:hover {
+    background-color: #187bcd;
+  }
+
+    /* Footer */
+    .footer {
+        background-color: #0b1220;
+        color: white;
+        padding: 40px 20px;
+      }
+      
+      .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      .footer-section {
+        flex: 1 1 220px;
+      }
+      
+      .footer-section h3,
+      .footer-section h4 {
+        margin-bottom: 10px;
+        color: white;
+      }
+      
+      .footer-section p,
+      .footer-section a {
+        font-size: 14px;
+        color: #ccc;
+        line-height: 1.6;
+      }
+      
+      .footer-section a:hover {
+        color: #fff;
+      }
+      
+      .social-icons {
+        margin-top: 10px;
+      }
+      
+      .social-icons i {
+        margin-right: 10px;
+        font-size: 18px;
+        color: #fff;
+        cursor: pointer;
+      }
+      
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .footer-section ul li {
+        margin-bottom: 8px;
+      }
+      
+      .payment-icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      
+      .payment-icons img {
+        width: 40px;
+        height: auto;
+      }
+      
+      hr {
+        border: none;
+        border-top: 1px solid #1c2331;
+        margin: 30px 0 15px;
+      }
+      
+      .footer p {
+        text-align: center;
+        font-size: 13px;
+        color: #999;
+      }
+      

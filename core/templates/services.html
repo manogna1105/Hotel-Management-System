@@ -1,0 +1,266 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LunoStay Hotel</title>
+  <link rel="stylesheet" href="{% static 'css/services.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="{% static 'js/services.js' %}" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-container">
+      <div class="logo"><i class="fas fa-hotel"></i> Luno<span style="color:#1e90ff">Stay</span></div>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'rooms' %}">Rooms</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="{% url 'login_view' %}" class="login-btn"><i class="fas fa-user"></i> Login</a>
+    </div>
+  </header>
+
+   <!-- Hero -->
+   <section class="hero">
+    <div class="container hero-content">
+      <h1>Our Services</h1>
+      <p>Experience world-class services and amenities designed to make your stay exceptional.</p>
+    </div>
+  </section>
+
+<section class="services-section">
+    <div class="services-header">
+      <h2>Premium Services</h2>
+      <p>Discover our range of exceptional services designed for your comfort</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Service 1 -->
+      <div class="service-box">
+        <div class="icon-container"><i class="fas fa-utensils"></i></div>
+        <div class="service-content">
+          <h4>Gourmet Dining</h4>
+          <p>Experience culinary excellence with our award-winning chefs.</p>
+          <ul>
+            <li>24-hour in-room dining service</li>
+            <li>Three signature restaurants</li>
+            <li>Rooftop bar with panoramic views</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-box">
+        <div class="icon-container"><i class="fas fa-spa"></i></div>
+        <div class="service-content">
+          <h4>Spa & Wellness</h4>
+          <p>Rejuvenate your body and mind at our luxurious spa.</p>
+          <ul>
+            <li>Full-service spa with private treatment rooms</li>
+            <li>Steam room and sauna</li>
+            <li>Holistic wellness programs</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-box">
+        <div class="icon-container"><i class="fas fa-dumbbell"></i></div>
+        <div class="service-content">
+          <h4>Pool & Fitness</h4>
+          <p>Stay active with our state-of-the-art fitness center and pools.</p>
+          <ul>
+            <li>Infinity pool with ocean views</li>
+            <li>24-hour fitness center</li>
+            <li>Professional instructors available</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-box">
+        <div class="icon-container"><i class="fas fa-concierge-bell"></i></div>
+        <div class="service-content">
+          <h4>Concierge Service</h4>
+          <p>Our team is available 24/7 to assist with your needs.</p>
+          <ul>
+            <li>24/7 personal assistance</li>
+            <li>Local tour arrangements</li>
+            <li>Transportation services</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="amenities-section">
+    <h2>Additional Amenities</h2>
+    <p>Explore our range of additional services designed to enhance your stay</p>
+
+    <div class="amenities-grid">
+
+      <!-- Transportation -->
+      <div class="amenity-box">
+        <div class="icon-circle"><i class="fas fa-car"></i></div>
+        <div class="amenity-content">
+          <h4>Transportation</h4>
+          <p>Luxury car service, airport transfers, and rental car arrangements available for your convenience.</p>
+        </div>
+      </div>
+
+      <!-- Event Planning -->
+      <div class="amenity-box">
+        <div class="icon-circle"><i class="fas fa-calendar-alt"></i></div>
+        <div class="amenity-content">
+          <h4>Event Planning</h4>
+          <p>Comprehensive event planning services for weddings, conferences, and special occasions.</p>
+        </div>
+      </div>
+
+      <!-- Kids Club -->
+      <div class="amenity-box">
+        <div class="icon-circle"><i class="fas fa-child"></i></div>
+        <div class="amenity-content">
+          <h4>Kids Club</h4>
+          <p>Supervised activities and entertainment for children, allowing parents to relax and enjoy their stay.</p>
+        </div>
+      </div>
+
+      <!-- Business Center -->
+      <div class="amenity-box">
+        <div class="icon-circle"><i class="fas fa-briefcase"></i></div>
+        <div class="amenity-content">
+          <h4>Business Center</h4>
+          <p>Fully equipped business center with high-speed internet, printing, and secretarial services.</p>
+        </div>
+      </div>
+
+      <!-- Excursions -->
+      <div class="amenity-box">
+        <div class="icon-circle"><i class="fas fa-map-marked-alt"></i></div>
+        <div class="amenity-content">
+          <h4>Excursions</h4>
+          <p>Guided tours and excursions to local attractions, cultural sites, and natural wonders.</p>
+        </div>
+      </div>
+
+      <!-- Laundry Service -->
+      <div class="amenity-box">
+        <div class="icon-circle"><i class="fas fa-shirt"></i></div>
+        <div class="amenity-content">
+          <h4>Laundry Service</h4>
+          <p>Express laundry and dry-cleaning services with same-day delivery available upon request.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="container">
+    <h2>Service Packages</h2>
+    <p class="subheading">Enhance your stay with our specially curated service packages</p>
+
+    <div class="packages">
+      <!-- Wellness Package -->
+      <div class="package wellness">
+        <h2>Wellness Package</h2>
+        <p class="tagline">Rejuvenate your mind and body</p>
+        <div class="price"><strong>&#8377 2999 </strong><span>/stay</span></div>
+        <ul>
+          <li>✔️ Daily spa treatment (60 min)</li>
+          <li>✔️ Access to all wellness facilities</li>
+          <li>✔️ Healthy breakfast menu</li>
+          <li>✔️ Yoga or fitness session</li>
+          <li>✔️ Wellness gift basket</li>
+        </ul>
+        <a href="{% url 'booking' %}" class="btn blue"><center>Book Now</center></a>
+      </div>
+
+      <!-- Romantic Getaway -->
+      <div class="package romantic">
+        <h2>Romantic Getaway</h2>
+        <p class="tagline">Perfect for couples</p>
+        <div class="price"><strong>&#8377 3999 </strong><span>/stay</span></div>
+        <ul>
+          <li>✔️ Champagne and chocolates on arrival</li>
+          <li>✔️ Private candlelit dinner</li>
+          <li>✔️ Couples spa treatment</li>
+          <li>✔️ Late checkout</li>
+          <li>✔️ Romantic room decoration</li>
+        </ul>
+        <a href="{% url 'booking' %}" class="btn purple"><center>Book Now</center></a>
+      </div>
+
+      <!-- Family Fun -->
+      <div class="package family">
+        <h2>Family Fun</h2>
+        <p class="tagline">Great for families with kids</p>
+        <div class="price"><strong>&#8377 2999 </strong><span>/stay</span></div>
+        <ul>
+          <li>✔️ Welcome gift for kids</li>
+          <li>✔️ Daily access to kids club</li>
+          <li>✔️ Family movie night with snacks</li>
+          <li>✔️ One family excursion</li>
+          <li>✔️ Family dining discounts</li>
+        </ul>
+        <a href="{% url 'booking' %}" class="btn orange"><center>Book Now</center></a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>LunoStay Hotel</h3>
+        <p>Experience luxury accommodation with world-class service and amenities.</p>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
+  
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'rooms' %}">Rooms & Suites</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Cityville, Country</p>
+        <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+        <p><i class="fas fa-envelope"></i> info@luxstayhotel.com</p>
+      </div>
+  
+      <div class="footer-section">
+        <h4>We Accept</h4>
+        <div class="payment-icons">
+          <img src="{% static 'images/visa.png' %}" alt="Visa">
+          <img src="{% static 'images/Mastercard.png' %}" alt="MasterCard">
+          <img src="{% static 'images/Amex.png' %}" alt="Amex">
+          <img src="{% static 'images/discover.png' %}" alt="Discover">
+          <img src="{% static 'images/paypal.png' %}" alt="PayPal">
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p class="copyright">© 2025 LunoStay Hotel. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

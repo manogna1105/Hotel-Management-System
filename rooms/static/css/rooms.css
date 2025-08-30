@@ -1,0 +1,499 @@
+/* Base reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Container Utility */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Navigation */
+header {
+  background: #fff;
+  border-bottom: 1px solid #eaeaea;
+  padding: 15px 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 5px 0;
+  transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #1e90ff;
+  border-bottom: 2px solid #1e90ff;
+}
+
+.login-btn {
+  text-decoration: none;
+  color: #1e90ff;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Hero Section */
+.hero {
+  background: #1e90ff;
+  color: white;
+  padding: 80px 0 100px;
+}
+
+.hero-content {
+  text-align: left;
+}
+
+.hero-content h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+}
+
+.breadcrumb a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Search Section */
+.search-section {
+  position: relative;
+  margin-top: -60px;
+  z-index: 1;
+}
+
+.search-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.search-card h3 {
+  margin-bottom: 10px;
+  color: #1e90ff;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Search Form Styles */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  flex: 1 1 100%;
+}
+
+label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #555;
+}
+
+input[type="date"],
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #fff;
+}
+
+button[type="submit"] {
+  background: #1e90ff;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+  background: #1477d5;
+}
+
+/* Room Listing Layout */
+.room-listing {
+  padding: 60px 0;
+  background-color: #f5f5f5;
+}
+
+.listing-container {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center; /* center the whole filter + room content */
+  max-width: 1200px; /* or the same value used for .container elsewhere */
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+
+/* Sidebar Filters */
+.filters {
+  background: #fff;
+  padding: 20px;
+  flex: 0 0 250px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 270px;
+  width: 100%;
+}
+
+.filters h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.filter-group {
+  margin-bottom: 1rem;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #444;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+select option {
+  padding: 2px 10px;   /* Reduce vertical and horizontal padding */
+  font-size: 14px;     /* Optional: reduce font size */
+}
+
+.filter-group {
+  margin-bottom: 5px; /* Keeps checkbox close to label text */
+}
+
+.price-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-bottom: 5px;
+  accent-color: purple;
+}
+
+.price-display {
+  font-size: 14px;
+  color: #222;
+  margin-top: 5px;
+}
+
+.filter-btn {
+  background: #1e90ff;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.filter-btn:hover {
+  background: #1477d5;
+}
+
+
+/* Room Cards Grid */
+.room-grid {
+  flex: 3;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.room-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+  transition: transform 0.2s ease;
+}
+
+.room-card:hover {
+  transform: translateY(-5px);
+}
+
+.room-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.room-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.room-info {
+  padding: 15px;
+}
+
+.room-info h4 {
+  margin-bottom: 6px;
+  font-size: 18px;
+  color: #333;
+}
+
+.room-info .price {
+  color: #1e90ff;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.room-info p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.room-info span {
+    color: #444;
+    font-size: 0.85rem;
+    margin-left: 0.4rem;
+  }
+
+.view-btn {
+  margin-top: 10px;
+  padding: 8px 14px;
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.book-btn{
+  margin-top: 10px;
+  padding: 8px 14px;
+  background-color: #696969;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.view-btn:hover {
+  background-color: #1477d5;
+}
+
+.newsletter-wrapper {
+  background-color: #155df9;
+  padding: 60px 20px;
+  text-align: center;
+  color: white;
+}
+
+.newsletter-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.newsletter-subtitle {
+  font-size: 16px;
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+  line-height: 1.5;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 4px;
+  width: 280px;
+  font-size: 15px;
+}
+
+.newsletter-form button {
+  padding: 12px 20px;
+  background-color: #111827;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background-color: #000f2c;
+}
+
+.footer {
+  background-color: #0b1220;
+  color: white;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1 1 220px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  margin-bottom: 10px;
+  color: white;
+}
+
+.footer-section p,
+.footer-section a {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.footer-section a:hover {
+  color: #fff;
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons i {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+}
+
+.payment-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.payment-icons img {
+  width: 40px;
+  height: auto;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #1c2331;
+  margin: 30px 0 15px;
+}
+
+.footer p {
+  text-align: center;
+  font-size: 13px;
+  color: #999;
+}
+
+.filter-btn + .filter-btn {
+  margin-top: 10px;
+  background-color: #444;
+}
+
+.filter-btn + .filter-btn:hover {
+  background-color: #000;
+}

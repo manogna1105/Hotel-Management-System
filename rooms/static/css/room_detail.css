@@ -1,0 +1,391 @@
+/* Base reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f0f4f8;
+  color: #333;
+  line-height: 1.6;
+}
+
+.room-detail-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .room-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 2rem;
+}
+
+/* Navbar */
+header {
+  background: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.nav-container .logo{
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.nav-container nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.75rem;
+}
+
+.nav-container a {
+  text-decoration: none;
+  color: #333;
+}
+
+.nav-container nav ul li a,
+.login-btn {
+text-decoration: none;
+color: #333;
+font-weight: 500;
+font-size: 1.1rem; /* Increase from default, or try 1.2rem or 1.3rem */
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.main-content {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+
+.room-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.room-title {
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+.room-price {
+  font-size: 20px;
+  color: #28a745;
+  margin-bottom: 20px;
+}
+
+.section-box {
+  background-color: #eae4e4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  margin-bottom: 30px;
+}
+
+.section-text {
+  margin: 10px 0 0;
+}
+
+.section-list {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  margin: 30px 0 10px;
+}
+
+.policies {
+  display: flex;
+  gap: 30px;
+  background-color:  #eae4e4;
+  padding: 20px;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.policy-block {
+  flex: 1;
+  min-width: 250px;
+}
+
+.policy-block h3 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.policy-block ul {
+  list-style: none;
+  padding-left: 10px;
+}
+
+.policy-block ul li {
+  margin: 5px 0;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.booking-box {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  min-width: 300px;
+  height: fit-content;
+  position: sticky;
+  top: 30px;
+  margin-top: 40px;
+}
+
+.booking-box h3 {
+  margin-bottom: 20px;
+}
+
+.booking-box label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.booking-box input,
+.booking-box select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+  background-color:  #eae4e4;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ddd;
+  transition: 0.2s ease;
+}
+
+.checkbox-group label:hover {
+  background-color:  #eae4e4;
+  border-color: #cce0ff;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.help-box {
+  margin-top: 20px;
+  font-size: 14px;
+  background-color: #eae4e4;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.help-box .contact {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.footer {
+  background-color: #0b1220;
+  color: white;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  }
+  
+  .footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  }
+  
+  .footer-section {
+  flex: 1 1 220px;
+  }
+  
+  .footer-section h3,
+  .footer-section h4 {
+  margin-bottom: 10px;
+  color: white;
+  }
+  
+  .footer-section p,
+  .footer-section a {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.6;
+  }
+  
+  .footer-section a:hover {
+  color: #fff;
+  }
+  
+  .social-icons {
+  margin-top: 10px;
+  }
+  
+  .social-icons i {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  }
+  
+  .footer-section ul {
+  list-style: none;
+  padding: 0;
+  }
+  
+  .footer-section ul li {
+  margin-bottom: 8px;
+  }
+  
+  .payment-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  }
+  
+  .payment-icons img {
+  width: 40px;
+  height: auto;
+  }
+  
+  hr {
+  border: none;
+  border-top: 1px solid #1c2331;
+  margin: 30px 0 15px;
+  }
+  
+  .footer p {
+  text-align: center;
+  font-size: 13px;
+  color: #999;
+  }
+  
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .input-field {
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border 0.3s, box-shadow 0.3s;
+  }
+  
+  .input-field:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  }
+  
+  .book-btn {
+    background-color: #1e90ff;
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+  }
+  
+  .btn-book:hover {
+    background-color: #0d6efd;
+  }
+  
+  .help-box {
+    margin-top: 20px;
+    font-size: 14px;
+    background-color: #e6e3e3;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .help-title {
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  
+  .help-box .contact {
+    margin-top: 8px;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .help-box .contact i {
+    margin-right: 5px;
+  }
+  

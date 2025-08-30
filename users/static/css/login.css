@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .login-box {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    text-align: center;
+    width: 340px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  }
+
+  .login-box h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 25px;
+  }
+
+  button {
+    background-color: #bbbbbb;
+    color: black;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+  
+
+  .tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .tab {
+    flex: 1;
+    padding: 10px;
+    background-color: #eee;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    transition: background 0.3s;
+  }
+
+  .tab.active {
+    background-color: #0080ff;
+    color: white;
+  }
+
+  .input-style {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #0080ff;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+
+  .btn-login:hover {
+    background-color: #0066cc;
+  }
+
+  .forgot-password {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+    color: blue;
+    text-decoration: underline;
+  }
+
+  .btn-logout {
+    width: 100%;
+    padding: 12px;
+    background-color: #9e9e9e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .btn-logout:hover {
+    background-color: #cc0000;
+  }
+  

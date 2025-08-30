@@ -1,0 +1,247 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LunoStay Hotel</title>
+  <link rel="stylesheet" href="{% static 'css/about.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="{% static 'js/about.js' %}" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-container">
+      <div class="logo"><i class="fas fa-hotel"></i> Luno<span style="color:#1e90ff">Stay</span></div>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'rooms' %}">Rooms</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="{% url 'login_view' %}" class="login-btn"><i class="fas fa-user"></i> Login</a>
+    </div>
+  </header>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-container">
+      <h1 class="hero-heading">About LunoStay Hotel</h1>
+      <p class="hero-description">
+        Discover our story, our values, and our commitment to providing exceptional hospitality experiences.
+      </p>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="about-container">
+      <!-- Text -->
+      <div class="about-text">
+        <h2 class="about-heading">Our Story</h2>
+        <p class="about-paragraph">
+          Founded in 2005, LunoStay Hotel has grown from a boutique establishment to one of the most prestigious luxury hotel chains in the world. Our journey began with a simple vision: to create spaces where travelers can experience the perfect blend of luxury, comfort, and authentic hospitality.
+        </p>
+        <p class="about-paragraph">
+          Over the years, we have expanded our presence to major cities around the globe, bringing our signature style and service excellence to discerning travelers worldwide. Despite our growth, we have remained true to our core values and commitment to personalized service.
+        </p>
+        <p class="about-paragraph">
+          Today, LunoStay Hotel stands as a symbol of luxury hospitality, continuously evolving to meet the changing needs of modern travelers while preserving the timeless elegance that has been our hallmark from the beginning.
+        </p>
+      </div>
+  
+      <!-- Image -->
+      <div class="about-image">
+        <img src="{% static 'images/luxstay-hotel.jpg' %}" alt="LunoStay Hotel" class="about-img" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Values Section -->
+<section class="mission-section">
+    <div class="mission-container">
+      <h2 class="section-heading">Our Mission & Values</h2>
+      <p class="section-subtext">
+        We are dedicated to creating exceptional experiences that exceed our guests' expectations through personalized service, attention to detail, and authentic hospitality.
+      </p>
+  
+      <div class="values-grid">
+        <!-- Excellence -->
+        <div class="value-box">
+          <div class="icon-circle"><i class="fas fa-star"></i></div>
+          <h4>Excellence</h4>
+          <p>We strive for excellence in everything we do, from the quality of our accommodations to the service we provide to each guest.</p>
+        </div>
+  
+        <!-- Genuine Care -->
+        <div class="value-box">
+          <div class="icon-circle"><i class="fas fa-heart"></i></div>
+          <h4>Genuine Care</h4>
+          <p>We genuinely care about our guests, creating warm and authentic interactions that make them feel valued and special.</p>
+        </div>
+  
+        <!-- Sustainability -->
+        <div class="value-box">
+          <div class="icon-circle"><i class="fas fa-leaf"></i></div>
+          <h4>Sustainability</h4>
+          <p>We are committed to sustainable practices that minimize our environmental footprint and contribute positively to our communities.</p>
+        </div>
+  
+        <!-- Innovation -->
+        <div class="value-box">
+          <div class="icon-circle"><i class="fas fa-lightbulb"></i></div>
+          <h4>Innovation</h4>
+          <p>We embrace innovation to enhance the guest experience, continuously improving our services and anticipating future needs.</p>
+        </div>
+  
+        <!-- Teamwork -->
+        <div class="value-box">
+          <div class="icon-circle"><i class="fas fa-users"></i></div>
+          <h4>Teamwork</h4>
+          <p>We foster a collaborative environment where every team member is valued and empowered.</p>
+        </div>
+  
+        <!-- Cultural Respect -->
+        <div class="value-box">
+          <div class="icon-circle"><i class="fas fa-globe"></i></div>
+          <h4>Cultural Respect</h4>
+          <p>We embrace cultural differences and create inclusive spaces where all guests feel welcome.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Achievements Section -->
+  <section class="achievements-section">
+    <div class="achievements-container">
+      <h2 class="section-heading">Our Achievements</h2>
+      <p class="section-subtext">Recognition of our commitment to excellence in hospitality</p>
+  
+      <div class="achievements-grid">
+        <!-- Awards & Recognition -->
+        <div class="awards-box">
+          <h3 class="awards-title"><i class="fas fa-award"></i> Awards & Recognition</h3>
+          <ul class="awards-list">
+            <li>
+              <div class="award-icon"><i class="fas fa-trophy"></i></div>
+              <div>
+                <h4 class="award-heading">Five-Star Excellence Award</h4>
+                <p>Recognized for exceptional service and amenities for five consecutive years.</p>
+              </div>
+            </li>
+            <li>
+              <div class="award-icon"><i class="fas fa-medal"></i></div>
+              <div>
+                <h4 class="award-heading">Best Luxury Hotel Chain</h4>
+                <p>Named the leading luxury hotel chain by Travel & Leisure magazine.</p>
+              </div>
+            </li>
+            <li>
+              <div class="award-icon"><i class="fas fa-star"></i></div>
+              <div>
+                <h4 class="award-heading">Hospitality Leadership Award</h4>
+                <p>Acknowledged for innovation and leadership in the hospitality industry.</p>
+              </div>
+            </li>
+            <li>
+              <div class="award-icon"><i class="fas fa-leaf"></i></div>
+              <div>
+                <h4 class="award-heading">Green Hospitality Certification</h4>
+                <p>Certified for sustainable practices and environmental stewardship.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+  
+        <!-- Key Milestones -->
+        <div class="milestones-box">
+          <h3 class="milestones-title"><i class="fas fa-flag"></i> Key Milestones</h3>
+          <div class="milestones-timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>2005</h4>
+                <p>Founded with our first property in New York City.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>2010</h4>
+                <p>Expanded to Europe with locations in London and Paris.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>2015</h4>
+                <p>Launched our signature wellness program across all properties.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>2020</h4>
+                <p>Introduced innovative sustainable practices and digital guest experiences.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>LunoStay Hotel</h3>
+        <p>Experience luxury accommodation with world-class service and amenities.</p>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
+  
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'rooms' %}">Rooms & Suites</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Cityville, Country</p>
+        <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+        <p><i class="fas fa-envelope"></i> info@luxstayhotel.com</p>
+      </div>
+  
+      <div class="footer-section">
+        <h4>We Accept</h4>
+        <div class="payment-icons">
+          <img src="{% static 'images/visa.png' %}" alt="Visa">
+          <img src="{% static 'images/Mastercard.png' %}" alt="MasterCard">
+          <img src="{% static 'images/Amex.png' %}" alt="Amex">
+          <img src="{% static 'images/discover.png' %}" alt="Discover">
+          <img src="{% static 'images/paypal.png' %}" alt="PayPal">
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p class="copyright">© 2025 LunoStay Hotel. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

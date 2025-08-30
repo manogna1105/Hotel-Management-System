@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LuxStay | Login</title>
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="{% static 'js/login.js' %}" defer></script>
+</head>
+
+<body>
+
+  <div class="login-box">
+    {% if user.is_authenticated %}
+      <h2>Welcome, {{ user.username }}</h2>
+      <form method="POST" action="{% url 'logout_view' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn-login">Logout</button>
+      </form>
+    {% else %}
+      <h2>Account Login</h2>
+
+      <div class="tabs">
+        <button class="tab active" onclick="switchRole('guest')">Guest</button>
+        <button class="tab" onclick="switchRole('staff')">Staff</button>
+      </div>
+    
+      <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="role" id="roleInput" value="guest">
+        <input type="text" name="username" placeholder="Username" class="input-style" required>
+        <input type="password" name="password" placeholder="Password" class="input-style" required>
+        <button type="submit" class="btn-login">Login</button>
+        <form method="post" action="{% url 'logout_view' %}" style="margin-top: 10px;">
+          {% csrf_token %}
+          <button type="submit" class="btn-logout">Logout</button>
+        </form>  
+      </form>
+
+      <a href="#" class="forgot-password">Forgot password?</a>
+    {% endif %}
+  </div>
+
+</body>
+</html>

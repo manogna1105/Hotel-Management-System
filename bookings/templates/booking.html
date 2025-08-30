@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LunoStay Hotel</title>
+  <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="{% static 'js/booking.js' %}" defer></script>
+  <!-- PayPal Script -->
+  <script src="https://www.paypal.com/sdk/js?client-id=sb-gqgft14722727@business.example.com&currency=INR"></script>
+    
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav-container">
+      <div class="logo"><i class="fas fa-hotel"></i> Luno<span style="color:#1e90ff">Stay</span></div>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'rooms' %}">Rooms</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="{% url 'login_view' %}" class="login-btn"><i class="fas fa-user"></i> Login</a>
+    </div>
+  </header>
+
+  <section class="booking-hero">
+    <h2>Complete Your Booking</h2>
+    <div class="steps-container">
+      <div class="step"><div class="circle">1</div><p>Room Selection</p></div>
+      <div class="line"></div>
+      <div class="step"><div class="circle">2</div><p>Guest Details</p></div>
+      <div class="line"></div>
+      <div class="step"><div class="circle">3</div><p>Payment</p></div>
+      <div class="line"></div>
+      <div class="step"><div class="circle">4</div><p>Confirmation</p></div>
+    </div>
+  </section>
+
+  <main>
+    <section class="form-wrapper" style="max-width: 1280px; margin: 0 auto; padding: 2rem; background: #f9f9f9; border-radius: 8px;">
+      <h2 style="text-align: center;">Select Your Booking</h2>
+  
+      <form method="POST" action="{% url 'booking_success' %}" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        {% csrf_token %}
+  
+        <input type="hidden" id="roomInput" name="room_ids">
+        <input type="hidden" id="serviceInput" name="service_ids">
+        <input type="hidden" id="packageInput" name="package_ids">
+        <input type="hidden" id="totalInput" name="total_price">
+        <input type="hidden" id="hidden_checkin" name="check_in">
+        <input type="hidden" id="hidden_checkout" name="check_out">
+  
+        <!-- Check-in/out -->
+        <div style="display: flex; gap: 2rem; justify-content: center;">
+          <label>Check-in: <input type="date" id="check-in" name="check_in"></label>
+          <label>Check-out: <input type="date" id="check-out" name="check_out"></label>
+        </div>
+  
+        <!-- Room Section -->
+        <div class="section-container">
+          <h3>Select Room</h3>
+          <div class="room-list" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            {% for room in available_rooms %}
+              <label class="room-card" style="border: 1px solid #ccc; border-radius: 8px; padding: 12px; width: 250px;">
+                <strong>{{ room.room.name }}</strong><br>
+                ₹{{ room.room.price }}<br>
+                <small>Type: {{ room.room.get_room_type_display }}</small><br>
+                <small>Available: {{ room.available_rooms }}</small><br>
+                Quantity:
+                <input type="number" class="room-qty"
+                       data-room-id="{{ room.room.id }}"
+                       data-price="{{ room.room.price }}"
+                       min="0" value="0" style="width: 50px;">
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+  
+        <!-- Services -->
+        <div class="section-container">
+          <h3>Select Services</h3>
+          <div class="service-list" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            {% for service in individual_services %}
+              <label class="service-card" style="border: 1px solid #ccc; border-radius: 8px; padding: 12px; width: 300px;">
+                <input type="checkbox" name="service_ids" value="{{ service.id }}" data-price="{{ service.price }}">
+                <i class="{{ service.icon }}" style="color: #007BFF;"></i>
+                {{ service.name }} – ₹{{ service.price }}
+                {% if service.description %}
+                  <br><small>{{ service.description }}</small>
+                {% endif %}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+  
+        <!-- Packages -->
+        <div class="section-container">
+          <h3>Service Packages</h3>
+          <div class="package-list" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            {% for package in service_packages %}
+              <label class="package-card" style="border: 1px solid #ccc; border-radius: 8px; padding: 12px; width: 400px;">
+                <input type="checkbox" name="package_ids" value="{{ package.id }}" data-price="{{ package.price }}">
+                <strong>{{ package.name }}</strong> – ₹{{ package.price }}
+                {% if package.description %}
+                  <br><small>{{ package.description }}</small>
+                {% endif %}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+  
+        <div style="text-align: center;">
+          <strong>Total: ₹<span id="total">0</span></strong>
+        </div>
+        <br>
+        <!-- Guest Info -->
+        <div class="guest-info" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+          <label>First Name: <input type="text" name="first_name" required></label>
+          <label>Last Name: <input type="text" name="last_name" required></label>
+          <label>Email: <input type="email" name="email" required></label>
+          <label>Phone: <input type="tel" name="phone" required></label>
+          <label>Address: <input type="text" name="address" required></label>
+          <label>City: <input type="text" name="city" required></label>
+          <label>Country: <input type="text" name="country" required></label>
+        </div>
+  
+        <!-- Payment Info -->
+        <h3 style="margin-top: 2rem;">Payment Information</h3>
+        <input type="hidden" name="payment_method" id="payment-method" value="Credit Card">
+        
+        <div class="payment-methods" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-bottom: 1rem;">
+          <button type="button" class="payment-btn" onclick="selectMethod('Credit Card')">
+            <i class="fas fa-credit-card"></i> Credit Card
+          </button>
+          <button type="button" class="payment-btn" onclick="selectMethod('PayPal')">
+            <i class="fab fa-paypal"></i> PayPal
+          </button>
+          <button type="button" class="payment-btn" onclick="selectMethod('Bank Transfer')">
+            <i class="fas fa-university"></i> Bank Transfer
+          </button>
+          <button type="button" class="payment-btn" onclick="selectMethod('Pay at Hotel')">
+            <i class="fas fa-hand-holding-usd"></i> Pay at Hotel
+          </button>
+        </div>
+        
+        <!-- Credit Card Fields -->
+        <div id="credit-card-fields" style="display: block;">
+          <div class="form-group">
+            <label>Card Number</label>
+            <input type="text" name="card_number" placeholder="**** **** **** ****">
+          </div>
+        
+          <div class="form-row" style="display: flex; gap: 2rem; flex-wrap: wrap;">
+            <div class="form-group" style="flex: 1;">
+              <label>Cardholder Name</label>
+              <input type="text" name="card_name">
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label>Expiry Date</label>
+              <input type="text" name="expiry" placeholder="MM/YY">
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label>CVV</label>
+              <input type="password" name="cvv" placeholder="•••">
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group" style="margin-top: 1rem;">
+          <label>
+            <input type="checkbox" name="agreement" required>
+            I agree to the <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>. I also agree to the cancellation policy and understand that I will be charged for cancellations within 48 hours of check-in.
+          </label>
+        </div>
+        
+  
+        <div style="text-align: center;">
+          <button type="submit" style="padding: 0.6rem 2rem; font-size: 1rem; border-radius: 6px; background: #1e90ff; color: white; border: none;">Submit Booking</button>
+        </div>
+      </form>
+  
+      <!-- Booking Help -->
+      <div class="booking-summary" style="text-align: center; margin-top: 2rem;">
+        <h4>Booking Summary</h4>
+        <p><strong>Need Help?</strong><br>Our reservation team is available 24/7</p>
+        <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+      </div>
+    </section>
+  </main>
+  
+  
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>LuxStay Hotel</h3>
+        <p>Experience luxury accommodation with world-class service and amenities.</p>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
+  
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'rooms' %}">Rooms & Suites</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Cityville, Country</p>
+        <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+        <p><i class="fas fa-envelope"></i> info@luxstayhotel.com</p>
+      </div>
+  
+      <div class="footer-section">
+        <h4>We Accept</h4>
+        <div class="payment-icons">
+          <img src="{% static 'images/visa.png' %}" alt="Visa">
+          <img src="{% static 'images/Mastercard.png' %}" alt="MasterCard">
+          <img src="{% static 'images/Amex.png' %}" alt="Amex">
+          <img src="{% static 'images/discover.png' %}" alt="Discover">
+          <img src="{% static 'images/paypal.png' %}" alt="PayPal">
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p class="copyright">© 2025 LuxStay Hotel. All rights reserved.</p>
+  </footer>
+</body>
+</html>
